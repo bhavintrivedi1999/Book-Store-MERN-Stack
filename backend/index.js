@@ -9,13 +9,22 @@ const app = express();
 // Middleware for parsing request body
 app.use(express.json());
 
+
+//Just wild testing
+axios.defaults.withCredentials = true;
 // Middleware for handling CORS POLICY
 // Option 1: Allow All Origins with Default of cors(*)
 // app.use(cors());
-app.use(cors({
+const corsOptions = {
   origin: 'https://book-store-mern-stack-frontend-ten.vercel.app',
+  credentials: true, // If you're using cookies or authentication
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type,Authorization', // Add headers as needed
   // Add other CORS options if needed
-}));
+};
+
+app.use(cors(corsOptions));
+
 // Option 2: Allow Custom Origins
 // app.use(
 //   cors({
